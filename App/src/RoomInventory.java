@@ -24,12 +24,12 @@ public class RoomInventory {
         roomAvailability.put(roomType, count);
     }
 
-    // ✅ ADD THIS METHOD HERE
+    //  ADD THIS METHOD HERE
     public int getAvailableRooms(String roomType) {
         return roomAvailability.getOrDefault(roomType, 0);
     }
 
-    // ✅ ALSO ADD THIS (for your 2nd error)
+    //  ALSO ADD THIS (for your 2nd error)
     public void bookRooms(String roomType, int count) {
         int current = getAvailableRooms(roomType);
         roomAvailability.put(roomType, current - count);
