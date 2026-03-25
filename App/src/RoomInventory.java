@@ -1,16 +1,19 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RoomInventory {
+public class RoomInventory implements Serializable {
+    // serialVersionUID ensures that saved files remain compatible if class structure changes slightly
+    private static final long serialVersionUID = 1L;
 
     private Map<String, Integer> roomAvailability;
 
     public RoomInventory() {
         roomAvailability = new HashMap<>();
-        initializeInventory();
+        initializeDefaultInventory();
     }
 
-    private void initializeInventory() {
+    private void initializeDefaultInventory() {
         roomAvailability.put("Single", 5);
         roomAvailability.put("Double", 3);
         roomAvailability.put("Suite", 2);
@@ -24,14 +27,12 @@ public class RoomInventory {
         roomAvailability.put(roomType, count);
     }
 
-    //  ADD THIS METHOD HERE
     public int getAvailableRooms(String roomType) {
         return roomAvailability.getOrDefault(roomType, 0);
     }
 
-    //  ALSO ADD THIS (for your 2nd error)
     public void bookRooms(String roomType, int count) {
         int current = getAvailableRooms(roomType);
-        roomAvailability.put(roomType, current - count);
+        roomAvailability.put(roomType, Math.max(0, current - count));
     }
 }

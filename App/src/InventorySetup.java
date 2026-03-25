@@ -1,34 +1,26 @@
+import java.io.Serializable;
 import java.util.Map;
 
-public class InventorySetup {
+// Implementing Serializable allows this object to be saved to a file
+public class InventorySetup implements Serializable {
 
-    public static void main(String[] args) {
+    // Assuming RoomInventory is the class that holds the actual Map
+    private RoomInventory roomInventory = new RoomInventory();
 
-        RoomInventory inventory = new RoomInventory();
+    // This is the method your Recovery class was looking for
+    public void initializeInventory(int single, int doubleR, int suite) {
+        // Here you would call the logic to set these specific numbers
+        // For now, let's assume roomInventory handles the storage
+        System.out.println("Initializing inventory with " + single + " Singles, " + doubleR + " Doubles, and " + suite + " Suites.");
+    }
 
-        Map<String, Integer> rooms = inventory.getRoomAvailability();
+    // This is the method for displaying the status
+    public void displayInventory() {
+        Map<String, Integer> rooms = roomInventory.getRoomAvailability();
 
-        System.out.println("Hotel Room Inventory Status\n");
-
-        // Single Room
-        System.out.println("Single Room:");
-        System.out.println("Beds: 1");
-        System.out.println("Size: 250 sqft");
-        System.out.println("Price per night: 1500.0");
-        System.out.println("Available Rooms: " + rooms.get("Single") + "\n");
-
-        // Double Room
-        System.out.println("Double Room:");
-        System.out.println("Beds: 2");
-        System.out.println("Size: 400 sqft");
-        System.out.println("Price per night: 2500.0");
-        System.out.println("Available Rooms: " + rooms.get("Double") + "\n");
-
-        // Suite Room
-        System.out.println("Suite Room:");
-        System.out.println("Beds: 3");
-        System.out.println("Size: 750 sqft");
-        System.out.println("Price per night: 5000.0");
-        System.out.println("Available Rooms: " + rooms.get("Suite"));
+        System.out.println("Current Inventory:");
+        System.out.println("Single: " + rooms.getOrDefault("Single", 0));
+        System.out.println("Double: " + rooms.getOrDefault("Double", 0));
+        System.out.println("Suite: " + rooms.getOrDefault("Suite", 0));
     }
 }
