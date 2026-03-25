@@ -14,7 +14,6 @@
  *
  * @version 5.0
  */
-
 public class Reservation {
 
     /** Name of the guest making the booking. */
